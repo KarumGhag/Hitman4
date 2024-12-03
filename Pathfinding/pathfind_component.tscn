@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq3uyl31imene"]
+
+[ext_resource type="Script" path="res://Pathfinding/pathfind_component.gd" id="1_6ao4k"]
+
+[node name="PathfindComponent" type="Node2D" node_paths=PackedStringArray("rays")]
+script = ExtResource("1_6ao4k")
+rays = [NodePath("Casts/RayCast2D"), NodePath("Casts/RayCast2D2"), NodePath("Casts/RayCast2D3"), NodePath("Casts/RayCast2D4"), NodePath("Casts/RayCast2D5"), NodePath("Casts/RayCast2D6"), NodePath("Casts/RayCast2D7"), NodePath("Casts/RayCast2D8")]
+
+[node name="Casts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Casts"]
+
+[node name="RayCast2D2" type="RayCast2D" parent="Casts"]
+target_position = Vector2(34, 39)
+
+[node name="RayCast2D3" type="RayCast2D" parent="Casts"]
+target_position = Vector2(50, 0)
+
+[node name="RayCast2D4" type="RayCast2D" parent="Casts"]
+target_position = Vector2(40, -40)
+
+[node name="RayCast2D5" type="RayCast2D" parent="Casts"]
+target_position = Vector2(0, -50)
+
+[node name="RayCast2D6" type="RayCast2D" parent="Casts"]
+target_position = Vector2(-40, -40)
+
+[node name="RayCast2D7" type="RayCast2D" parent="Casts"]
+target_position = Vector2(-59, 0)
+
+[node name="RayCast2D8" type="RayCast2D" parent="Casts"]
+target_position = Vector2(-40, 40)

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq71lr407eab8"]
+
+[ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_muac8"]
+[ext_resource type="PackedScene" uid="uid://s8o2fn2d2lu8" path="res://Enemy/enemy.tscn" id="2_181t4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6hoe"]
+
+[node name="World" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("2_181t4")]
+position = Vector2(454, 337)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(266, 171)
+
+[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-0.249994, -0.125001)
+scale = Vector2(0.785156, 0.392578)
+texture = ExtResource("1_muac8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(5, 2.5)
+shape = SubResource("RectangleShape2D_l6hoe")
