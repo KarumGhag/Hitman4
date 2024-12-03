@@ -3,96 +3,66 @@ extends Node2D
 class_name PathfindingComponent
 
 @export var body : CharacterBody2D
+
 @export var rays : Array[RayCast2D]
-#an array representing the directions of vectors as units of 1
-#every diagonal vector is normalized 
-var directions : Array[Vector2] = [Vector2(0, 1), Vector2(1, 1), Vector2(1, 0), Vector2(1, -1), Vector2(0, -1), Vector2(-1, -1), Vector2(-1, 0), Vector2(-1, 1)] 
-var dotProducts : Array[float]
+var directions : Array[Vector2] = [Vector2(0, -1), Vector2(1, -1), Vector2(1, 0), Vector2(1, -1), Vector2(0, 1), Vector2(-1, 1), Vector2(-1, 0), Vector2(-1, 1)]
+
+var target : Vector2
+var localVector : Vector2
 
 var interests : Array[float]
-var dangers: Array[float]
-var badOffset : float = 5 #when an array collides this gets taken from the interest
-
-var target : Vector2 = Vector2.ZERO
-var vectorToPlayer : Vector2 = Vector2.ZERO 
-
-var bestVector : Vector2
 var contextMap : Array[float]
-var highestContext
+var dangers : Array[float]
+var dangerSize : float = 5
 
-var speed : float = 100
-var steeringForce : float = 1
+var bestDirection : Vector2
 
+var steeringForce : Vector2
 
-
-func _ready() -> void:
-	contextMap.resize(len(directions))
-	dotProducts.resize(len(directions))
-	dangers.resize(len(directions))
-	print(dotProducts)
-	#makes the interest array the size of the rays array and gives it all starting value of 1
-	for i in range(len(rays)):
+func _ready():
+	print(rays)
+	for i in range(len(directions)):
+		directions[i] = directions[i].normalized()
 		interests.append(1)
-
-
-func _input(event):
-	if event.is_action_pressed("z"):
-		pass
-
-func _process(_delta) -> void:
-	getTarget()
-	if target:
-		getInterests()
-		bestVector = directions[getLargestIndex(contextMap)]
-		
-		
-		body.velocity = (bestVector * Vector2(speed, speed))
-
-		body.move_and_slide()
-
-		print(contextMap)
+		dangers.append(0)
+		contextMap.append(0)
 
 
 func getTarget() -> void:
 	target = get_global_mouse_position()
-	
-	getInterests()
 
+	localVector = body.global_position - target
+	localVector = localVector.normalized() 
 
 func getInterests() -> void:
-	
-	if not target:
-		return
-
-	#get vector to target
-	vectorToPlayer = body.global_position - target
-
-	#gets the dot product between each direction and the vector
 	for i in range(len(directions)):
-		interests[i] = directions[i].dot(vectorToPlayer)
-	
-	#gets the dangerous directions
-	for i in range(len(rays)):
+		interests[i] = localVector.dot(directions[i])
 		if rays[i].is_colliding():
-			dangers[i] = 5
+			dangers[i] = dangerSize
+		else:
+			dangers[i] = 0
 	
-	#gets context map (interest - danger)
-	for i in range(len(interests)):
-		contextMap[i] = interests[i] - dangers[i]
-
-
-func getLargestIndex(arr : Array[float]) -> int:
-	
-	var indexNumber : int = 0
-	var higestNumber : float = -1000
-
-	for i in range(len(arr)):
-		if arr[i] > higestNumber:
-			higestNumber = arr[i]
-			indexNumber = i
+	for i in range(len(contextMap)):
+		contextMap[i] =  dangers[i] - interests[i]
 	
 
-	return indexNumber
-
-
+func getLargest() -> Vector2:
+	var largest : float = -10000
+	var index : int
+	for i in range(len(contextMap)):
+		if contextMap[i] > largest:
+			largest = contextMap[i]
+			index = i
 	
+	bestDirection = directions[index]
+	return bestDirection
+
+func _process(delta) -> void:
+	getTarget()
+	getInterests()
+
+	steeringForce = (localVector - body.velocity).normalized() * 100
+	body.velocity += getLargest() * delta * 1000
+	body.move_and_slide()
+
+	pass

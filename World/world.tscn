@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq71lr407eab8"]
+[gd_scene load_steps=5 format=3 uid="uid://cq71lr407eab8"]
 
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_muac8"]
 [ext_resource type="PackedScene" uid="uid://s8o2fn2d2lu8" path="res://Enemy/enemy.tscn" id="2_181t4"]
+[ext_resource type="PackedScene" uid="uid://bq3uyl31imene" path="res://Pathfinding/pathfind_component.tscn" id="2_oq2dg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6hoe"]
 
@@ -9,6 +10,9 @@
 
 [node name="Enemy" parent="." instance=ExtResource("2_181t4")]
 position = Vector2(454, 337)
+
+[node name="PathfindComponent" parent="Enemy" node_paths=PackedStringArray("body") instance=ExtResource("2_oq2dg")]
+body = NodePath("..")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(266, 171)
