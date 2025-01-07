@@ -1,27 +1,63 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq71lr407eab8"]
+[gd_scene load_steps=6 format=3 uid="uid://cq71lr407eab8"]
 
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_muac8"]
 [ext_resource type="PackedScene" uid="uid://s8o2fn2d2lu8" path="res://Enemy/enemy.tscn" id="2_181t4"]
-[ext_resource type="PackedScene" uid="uid://bq3uyl31imene" path="res://Pathfinding/pathfind_component.tscn" id="2_oq2dg"]
+[ext_resource type="PackedScene" uid="uid://1l13jv08hnfd" path="res://Player/player.tscn" id="3_1fj7k"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cpu4h"]
+vertices = PackedVector2Array(1811.09, 15.9609, 861.75, 206, 861.75, 136, -158.063, 9.03125, 231, 136, -165.93, 1246.42, 231, 760.5, 1821.9, 1137.53, 301, 760.5, 301, 206)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4), PackedInt32Array(5, 3, 4, 6), PackedInt32Array(7, 5, 6, 8), PackedInt32Array(0, 7, 8, 1), PackedInt32Array(1, 8, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1821, 6, 1832, 1147, -176, 1257, -168, -1)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6hoe"]
+size = Vector2(120.9, 20)
 
 [node name="World" type="Node2D"]
 
-[node name="Enemy" parent="." instance=ExtResource("2_181t4")]
-position = Vector2(454, 337)
+[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_181t4")]
+position = Vector2(357, 253)
+player = NodePath("../Player")
 
-[node name="PathfindComponent" parent="Enemy" node_paths=PackedStringArray("body") instance=ExtResource("2_oq2dg")]
-body = NodePath("..")
+[node name="Enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_181t4")]
+position = Vector2(357, 328)
+player = NodePath("../Player")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-23, -7)
+navigation_polygon = SubResource("NavigationPolygon_cpu4h")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
 position = Vector2(266, 171)
 
-[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(-0.249994, -0.125001)
-scale = Vector2(0.785156, 0.392578)
+[node name="Icon" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D"]
+position = Vector2(270.25, -0.125001)
+scale = Vector2(5.01172, 0.392578)
 texture = ExtResource("1_muac8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+position = Vector2(283.5, 0)
 scale = Vector2(5, 2.5)
 shape = SubResource("RectangleShape2D_l6hoe")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="NavigationRegion2D"]
+position = Vector2(266, 171)
+rotation = 1.57079
+
+[node name="Icon" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D2"]
+position = Vector2(270.25, -0.125001)
+scale = Vector2(5.01172, 0.392578)
+texture = ExtResource("1_muac8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D2"]
+position = Vector2(277.25, 0)
+scale = Vector2(5, 2.5)
+shape = SubResource("RectangleShape2D_l6hoe")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 318.0
+offset_bottom = 34.0
+
+[node name="Player" parent="." instance=ExtResource("3_1fj7k")]
+position = Vector2(528, 274)

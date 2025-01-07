@@ -1,17 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://s8o2fn2d2lu8"]
+[gd_scene load_steps=7 format=3 uid="uid://s8o2fn2d2lu8"]
 
+[ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_kxpf7"]
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_lnlic"]
+[ext_resource type="Script" path="res://EnemyFSM/EnemyFSM.gd" id="3_o2xvu"]
+[ext_resource type="Script" path="res://EnemyFSM/Chase.gd" id="4_ojp4u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws7gu"]
-size = Vector2(62, 62)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuvow"]
+size = Vector2(220, 202)
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5i00"]
+radius = 33.2415
 
-[node name="enemyFace" type="Sprite2D" parent="."]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("nav", "lineOFSight", "toRotate")]
+motion_mode = 1
+wall_min_slide_angle = 0.0174533
+script = ExtResource("1_kxpf7")
+nav = NodePath("Navigation")
+lineOFSight = NodePath("LOSRay")
+toRotate = NodePath("ToRotate")
+
+[node name="ToRotate" type="Node2D" parent="."]
+
+[node name="enemyFace" type="Sprite2D" parent="ToRotate"]
 position = Vector2(0, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_lnlic")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Sight" type="Area2D" parent="ToRotate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToRotate/Sight"]
+position = Vector2(109, 0)
+shape = SubResource("RectangleShape2D_iuvow")
+
+[node name="EnemyCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_ws7gu")
+shape = SubResource("CircleShape2D_v5i00")
+
+[node name="LOSRay" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+
+[node name="Navigation" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="FSM" type="Node2D" parent="." node_paths=PackedStringArray("currentState")]
+script = ExtResource("3_o2xvu")
+currentState = NodePath("Chase")
+
+[node name="Chase" type="Node2D" parent="FSM" node_paths=PackedStringArray("chaseState", "body", "lineOFSight")]
+scale = Vector2(1.02166, 0.980831)
+script = ExtResource("4_ojp4u")
+chaseState = NodePath(".")
+body = NodePath("../..")
+lineOFSight = NodePath("../../LOSRay")
