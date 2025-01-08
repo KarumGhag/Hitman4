@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://yeq1gbshv4tm"]
+[gd_scene load_steps=4 format=3 uid="uid://yeq1gbshv4tm"]
 
-[node name="GunTest" type="Node2D"]
+[ext_resource type="Script" path="res://GunSystem/GunClass.gd" id="1_qlvy5"]
+[ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="2_0tfho"]
+[ext_resource type="PackedScene" uid="uid://bg0e1ffv6s88g" path="res://GunSystem/Bullets/Bullet.tscn" id="2_wr6xk"]
+
+[node name="GunTest" type="Node2D" node_paths=PackedStringArray("shootPoint")]
+position = Vector2(512, 280.5)
+script = ExtResource("1_qlvy5")
+bullet = ExtResource("2_wr6xk")
+shootPoint = NodePath("ShootPoint")
+gunName = "Test"
+auto = true
+spread = 200.0
+multiBulletNum = 10
+multiBulletWait = 0.0
+magSize = 100
+reloadTime = 1.0
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.242188)
+texture = ExtResource("2_0tfho")
+
+[node name="Model" type="Node" parent="."]
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(63, 0)

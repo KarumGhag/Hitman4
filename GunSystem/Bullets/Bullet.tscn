@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg0e1ffv6s88g"]
+
+[ext_resource type="Script" path="res://GunSystem/Bullets/BulletClass.gd" id="1_dflsj"]
+[ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_emeej"]
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_dflsj")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-3.57628e-07, 0)
+scale = Vector2(0.078125, 0.0625)
+texture = ExtResource("1_emeej")
