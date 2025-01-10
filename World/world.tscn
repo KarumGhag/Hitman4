@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq71lr407eab8"]
+[gd_scene load_steps=7 format=3 uid="uid://cq71lr407eab8"]
 
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_muac8"]
 [ext_resource type="PackedScene" uid="uid://s8o2fn2d2lu8" path="res://Enemy/enemy.tscn" id="2_181t4"]
 [ext_resource type="PackedScene" uid="uid://1l13jv08hnfd" path="res://Player/player.tscn" id="3_1fj7k"]
+[ext_resource type="PackedScene" uid="uid://yeq1gbshv4tm" path="res://GunSystem/AK47.tscn" id="4_4to6e"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cpu4h"]
 vertices = PackedVector2Array(1811.09, 15.9609, 861.75, 206, 861.75, 136, -158.063, 9.03125, 231, 136, -165.93, 1246.42, 231, 760.5, 1821.9, 1137.53, 301, 760.5, 301, 206)
@@ -61,3 +62,6 @@ offset_bottom = 34.0
 
 [node name="Player" parent="." instance=ExtResource("3_1fj7k")]
 position = Vector2(528, 274)
+
+[node name="GunTest" parent="." instance=ExtResource("4_4to6e")]
+position = Vector2(921, 467)

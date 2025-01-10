@@ -6,6 +6,8 @@ var fireDistance : float
 var originPoint : Vector2
 var distanceTravelled : float
 
+var damage : float
+
 func _ready() -> void:
 	originPoint = global_position
 

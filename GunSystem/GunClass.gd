@@ -1,4 +1,4 @@
-extends Node2D
+extends Item
 
 class_name GunClass
 
@@ -8,7 +8,6 @@ class_name GunClass
 
 @export_group("Stats")
 #basic gun stats
-@export var gunName : String
 @export var auto : bool
 @export var shotgun : bool
 
@@ -39,7 +38,8 @@ var canShoot : bool = true
 
 var target : Vector2
 
-func _ready() -> void:
+func itemReady() -> void:
+	print("test")
 	bulletsLeft = magSize
 	fireCoolDownTimer = Timer.new()
 	fireCoolDownTimer.one_shot = true
@@ -52,7 +52,7 @@ func _ready() -> void:
 func canShootAgain() -> void:
 	canShoot = true
 
-func _process(_delta) -> void:
+func itemProcess(_delta) -> void:
 	look_at(get_global_mouse_position())
 	if auto:
 		if Input.is_action_pressed("shoot"):
@@ -63,7 +63,7 @@ func _process(_delta) -> void:
 
 func shootLocation() -> Vector2:
 	var innacuracy = randf_range(-spread, spread)
-	target = get_global_mouse_position() - shootPoint.global_position + Vector2(innacuracy, innacuracy)
+	target = Vector2.from_angle(shootPoint.global_position.angle_to_point(get_global_mouse_position()) + innacuracy)
 
 	return target.normalized()
 
@@ -88,7 +88,9 @@ func shoot() -> void:
 		bulletInstance.velocity = bulletDirection * bulletSpeed
 
 		bulletInstance.look_at(get_global_mouse_position())
+
 		bulletInstance.fireDistance = fireDistance
+		bulletInstance.damage = damage
 		get_tree().get_root().add_child(bulletInstance)
 
 		
