@@ -6,6 +6,8 @@ var inventory : Array[Item] = [null]
 
 var currentItem : Item
 
+var player : Player
+
 func _ready():
 	inventory.resize(10)
 	for i in range(len(inventory)):
@@ -17,6 +19,10 @@ func _ready():
 
 func _process(_delta) -> void:
 
+	for i in range(len(inventory)):
+		if inventory[i] != null:
+			inventory[i].global_position = player.holder.global_position
+
 	if Input.is_action_just_pressed("next"):
 		currentItem = getNext()
 	if Input.is_action_just_pressed("last"):
@@ -27,7 +33,7 @@ func _process(_delta) -> void:
 		currentItem.equiped = true	
 
 
-		
+
 #loops over the inventory forwards until a value is found and sets that to the next value
 func getNext() -> Item:
 	var i : int = getCurrent()
@@ -86,3 +92,11 @@ func getCurrent() -> int:
 
 	#there are no items
 	return -1
+
+
+func isEmpty() -> bool:
+	for i in range(len(inventory)):
+		if inventory[i] != null:
+			return false
+		
+	return true

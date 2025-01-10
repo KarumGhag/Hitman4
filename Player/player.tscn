@@ -6,9 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tf50w"]
 size = Vector2(62, 62)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("holder")]
 position = Vector2(0, 1)
 script = ExtResource("1_4eru0")
+holder = NodePath("ItemHolder")
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -16,3 +17,5 @@ texture = ExtResource("1_n4aa2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tf50w")
+
+[node name="ItemHolder" type="Node2D" parent="."]

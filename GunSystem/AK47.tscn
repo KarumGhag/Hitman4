@@ -8,12 +8,15 @@
 radius = 117.427
 
 [node name="AK47" type="Node2D" node_paths=PackedStringArray("shootPoint", "pickUpArea", "image")]
+position = Vector2(41, 0)
 script = ExtResource("1_honka")
 bullet = ExtResource("2_midg2")
 shootPoint = NodePath("ShootPoint")
 auto = true
 multiBulletWait = 0.0
+bulletBounces = 1000
 damage = 100.0
+bulletSpeed = 1250.0
 magSize = 27
 reloadTime = 1.0
 itemName = "AK47"

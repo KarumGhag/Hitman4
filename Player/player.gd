@@ -10,14 +10,17 @@ var direction : Vector2 = Vector2.ZERO
 var steering : Vector2
 var mass : float = 2
 
+@export var holder : Node2D
+
+@onready var inventorySystem = get_node("/root/InventorySystem")
+
+func _ready() -> void:
+	inventorySystem.player = self
 
 func _process(_delta) -> void:
 	direction = Input.get_vector("left", "right", "up", "down")
 
 	direction = direction.normalized() * speed
-
-	#velocity.x = move_toward(velocity.x, direction.x, accel)
-	#velocity.y = move_toward(velocity.y, direction.y, accel)
 
 	steering = (direction - velocity) / mass
 

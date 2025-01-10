@@ -25,6 +25,9 @@ var fireCoolDownTimer : Timer
 ## Only use if above is above 1
 ## After a bullet is shot it waits this much time for the next bullet to be shot
 @export var multiBulletWait : float = 0.05
+## How many times the bullet will bounce
+## 1 means it will not bounce
+@export var bulletBounces : int = 1
 
 @export var damage : float
 @export var bulletSpeed : float = 1000
@@ -77,7 +80,6 @@ func shoot() -> void:
 	canShoot = false
 	
 	for i in range(multiBulletNum):
-		print("shoot")
 		if bulletsLeft <= 0:
 			reload()
 			break
@@ -91,6 +93,8 @@ func shoot() -> void:
 
 		bulletInstance.fireDistance = fireDistance
 		bulletInstance.damage = damage
+		bulletInstance.bounces = bulletBounces
+		
 		get_tree().get_root().add_child(bulletInstance)
 
 		

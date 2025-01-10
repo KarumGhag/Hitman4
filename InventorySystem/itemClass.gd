@@ -66,9 +66,17 @@ func pickUp() -> void:
 	var inventory = inventorySystem.inventory
 	for i in range(len(inventory)):
 		if inventory[i] == null:
+
+			var autoEquip = inventorySystem.isEmpty()
+
 			inventorySystem.inventory[i] = self
 			print(inventorySystem.inventory[i])
 			inInv = true
+
+			if autoEquip:
+				inventorySystem.currentItem = inventorySystem.inventory[i]
+				equiped = true
+
 			return
 	
 	print("no empty space")
