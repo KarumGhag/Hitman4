@@ -33,9 +33,10 @@ var fireCoolDownTimer : Timer
 @export var bulletSpeed : float = 1000
 
 @export_subgroup("reload")
-@export var magSize : int
+## max bullets
+@export var magSize : int = 16
 var bulletsLeft : int
-@export var reloadTime : float
+@export var reloadTime : float = 2
 var reloadTimer : Timer
 var canShoot : bool = true
 
