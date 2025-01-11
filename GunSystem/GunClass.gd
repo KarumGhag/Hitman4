@@ -95,6 +95,7 @@ func shoot() -> void:
 		bulletInstance.fireDistance = fireDistance
 		bulletInstance.damage = damage
 		bulletInstance.bounces = bulletBounces
+		bulletInstance.speed = bulletSpeed
 		
 		get_tree().get_root().add_child(bulletInstance)
 

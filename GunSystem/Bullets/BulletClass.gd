@@ -12,6 +12,9 @@ var damage : float
 #1 means it cannot bounce
 var bounces : int = 1
 
+var speed : float
+var direction : Vector2
+
 func _ready() -> void:
 	originPoint = global_position
 	hitBox.connect("body_entered", hitBoxBody)
@@ -20,8 +23,12 @@ func _process(_delta):
 	distanceTravelled = global_position.distance_to(originPoint)
 	if (fireDistance != 0) and distanceTravelled >= fireDistance:
 		queue_free()
+
+
+	velocity = speed * direction
+
 	move_and_slide()
-	look_at(get_global_mouse_position())
+	
 
 
 func hitBoxBody(body) -> void:
