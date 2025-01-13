@@ -37,7 +37,7 @@ func _process(delta) -> void:
 func itemReady() -> void:
 	pass
 
-func itemProcess(delta) -> void:
+func itemProcess(_delta) -> void:
 	pass
 
 

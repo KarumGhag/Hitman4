@@ -20,9 +20,10 @@ var direction : Vector2
 func _ready() -> void:
 	originPoint = global_position
 	hitbox.connect("body_entered", hitBoxBody)
+	
 	velocity = speed * direction
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	distanceTravelled = global_position.distance_to(originPoint)
 	if (fireDistance != 0) and distanceTravelled >= fireDistance:
 		queue_free()
@@ -39,7 +40,7 @@ func _process(delta) -> void:
 	#	bounces -= 1
 
 
-	#move_and_slide()
+	move_and_slide()
 	
 	
 
