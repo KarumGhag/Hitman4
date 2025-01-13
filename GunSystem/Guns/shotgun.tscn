@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy1jcrh400c5i"]
+
+[ext_resource type="Script" path="res://GunSystem/GunClass.gd" id="1_4p5ho"]
+[ext_resource type="PackedScene" uid="uid://bg0e1ffv6s88g" path="res://GunSystem/Bullets/Bullet.tscn" id="2_bqip4"]
+[ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="3_m7f0b"]
+[ext_resource type="PackedScene" uid="uid://bhb8li7we1p3k" path="res://GunSystem/pickup_area.tscn" id="4_c6lcd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkvrw"]
+radius = 100.005
+
+[node name="shotgun" type="Node2D" node_paths=PackedStringArray("shootPoint", "pickUpArea", "image")]
+script = ExtResource("1_4p5ho")
+bullet = ExtResource("2_bqip4")
+shootPoint = NodePath("ShootPoint")
+auto = true
+shotgun = true
+fireDistance = 1000.0
+spread = 0.2
+multiBulletNum = 7
+damage = 100.0
+bulletSpeed = 1200.0
+magSize = 10
+itemName = "Shotgun"
+pickUpArea = NodePath("PickupArea")
+image = NodePath("Icon")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.592448, 8.90419e-07, 3.85046e-07, 1)
+scale = Vector2(0.78125, 0.09375)
+texture = ExtResource("3_m7f0b")
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(53, 0)
+
+[node name="PickupArea" parent="." instance=ExtResource("4_c6lcd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_gkvrw")

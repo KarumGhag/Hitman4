@@ -10,7 +10,7 @@ var canPickUp : bool
 @export var image : Sprite2D
 var inInv : bool = false
 
-var equiped : bool = false
+@export var equiped : bool = false
 
 func _ready():
 	itemReady()
@@ -23,7 +23,6 @@ func _process(delta) -> void:
 	#if its in the invetory and not equiped it should be hidded and inactive
 	if inInv and not equiped:
 		hide()
-		itemProcess(delta)
 	#if its equipde it should be shown and active
 	elif equiped:
 		itemProcess(delta)
@@ -57,10 +56,7 @@ func cannotPick(body) -> void:
 
 @onready var inventorySystem = get_node("/root/InventorySystem")
 func pickUp() -> void:
-	if inInv:
-		print(str(self) + " is in inventory")
 	if not canPickUp:
-		print("not in range")
 		return
 	
 	var inventory = inventorySystem.inventory
@@ -70,7 +66,6 @@ func pickUp() -> void:
 			var autoEquip = inventorySystem.isEmpty()
 
 			inventorySystem.inventory[i] = self
-			print(inventorySystem.inventory[i])
 			inInv = true
 
 			if autoEquip:
@@ -79,4 +74,3 @@ func pickUp() -> void:
 
 			return
 	
-	print("no empty space")

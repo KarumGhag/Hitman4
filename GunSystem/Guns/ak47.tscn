@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://tkw35h5qkby1"]
+
+[ext_resource type="Script" path="res://GunSystem/GunClass.gd" id="1_pmgcn"]
+[ext_resource type="PackedScene" uid="uid://bg0e1ffv6s88g" path="res://GunSystem/Bullets/Bullet.tscn" id="2_yppb3"]
+[ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="3_6bf6o"]
+[ext_resource type="PackedScene" uid="uid://bhb8li7we1p3k" path="res://GunSystem/pickup_area.tscn" id="4_miqs5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkvrw"]
+radius = 100.005
+
+[node name="AK47" type="Node2D" node_paths=PackedStringArray("shootPoint", "pickUpArea", "image")]
+script = ExtResource("1_pmgcn")
+bullet = ExtResource("2_yppb3")
+shootPoint = NodePath("ShootPoint")
+auto = true
+damage = 100.0
+bulletSpeed = 2000.0
+magSize = 32
+itemName = "AK47"
+pickUpArea = NodePath("PickupArea")
+image = NodePath("Icon")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.368627, 0, 1, 1)
+scale = Vector2(0.78125, 0.09375)
+texture = ExtResource("3_6bf6o")
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(53, 0)
+
+[node name="PickupArea" parent="." instance=ExtResource("4_miqs5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_gkvrw")

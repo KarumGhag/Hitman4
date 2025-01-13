@@ -26,7 +26,6 @@ var fireCoolDownTimer : Timer
 ## After a bullet is shot it waits this much time for the next bullet to be shot
 @export var multiBulletWait : float = 0.05
 ## How many times the bullet will bounce
-## 1 means it will not bounce
 @export var bulletBounces : int = 1
 
 @export var damage : float
@@ -43,7 +42,6 @@ var canShoot : bool = true
 var target : Vector2
 
 func itemReady() -> void:
-	print("test")
 	bulletsLeft = magSize
 	fireCoolDownTimer = Timer.new()
 	fireCoolDownTimer.one_shot = true
@@ -88,7 +86,8 @@ func shoot() -> void:
 		var bulletDirection : Vector2 = shootLocation()
 		var bulletInstance = bullet.instantiate()
 		bulletInstance.global_position = shootPoint.global_position
-		bulletInstance.velocity = bulletDirection * bulletSpeed
+		#bulletInstance.velocity = bulletDirection * bulletSpeed
+		bulletInstance.direction = bulletDirection
 
 		bulletInstance.look_at(get_global_mouse_position())
 

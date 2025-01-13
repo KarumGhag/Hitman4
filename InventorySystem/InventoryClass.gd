@@ -15,8 +15,6 @@ func _ready():
 			currentItem = inventory[i]
 			break
 
-	print(inventory)
-
 func _process(_delta) -> void:
 
 	for i in range(len(inventory)):
@@ -25,6 +23,7 @@ func _process(_delta) -> void:
 
 	if Input.is_action_just_pressed("next"):
 		currentItem = getNext()
+
 	if Input.is_action_just_pressed("last"):
 		currentItem = getPrevious()
 
@@ -33,27 +32,34 @@ func _process(_delta) -> void:
 		currentItem.equiped = true	
 
 
+	for i in range(len(inventory)):
+		if inventory[i] != null:
+			if inventory[i] != currentItem:
+				inventory[i].equiped = false
+
+
+
 
 #loops over the inventory forwards until a value is found and sets that to the next value
 func getNext() -> Item:
 	var i : int = getCurrent()
 	
+	#no items in inventory
 	if i == -1:
-		print("no items")
-		print(inventory)
 		return
 
 	while true:
-		if i + 1 >= len(inventory):
+		if i + 2 >= len(inventory):
 			i = 0
 			if inventory[0] != null:
 				break
 			continue
 
-		i += 1
+		i += 2
 
 		if inventory[i] != null:
 			break
+
 
 	return inventory[i]
 
@@ -61,9 +67,9 @@ func getNext() -> Item:
 func getPrevious() -> Item:
 	var i : int = getCurrent()
 
+
+	#no items in inventory
 	if i == -1:
-		print("no items")
-		print(inventory)
 		return
 
 	while true:
@@ -76,6 +82,7 @@ func getPrevious() -> Item:
 		i -= 1
 		if inventory[i] != null:
 			break
+
 
 	return inventory[i]
 

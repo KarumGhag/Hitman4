@@ -18,6 +18,8 @@ func _ready() -> void:
 	inventorySystem.player = self
 
 func _process(_delta) -> void:
+	
+
 	direction = Input.get_vector("left", "right", "up", "down")
 
 	direction = direction.normalized() * speed
