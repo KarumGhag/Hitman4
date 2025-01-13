@@ -41,26 +41,25 @@ func _process(_delta) -> void:
 
 
 #loops over the inventory forwards until a value is found and sets that to the next value
+
+
 func getNext() -> Item:
 	var i : int = getCurrent()
-	
+
 	#no items in inventory
 	if i == -1:
 		return
 
 	while true:
-		if i + 2 >= len(inventory):
+		if i + 1 == len(inventory):
 			i = 0
-			if inventory[0] != null:
+			if inventory[i] != null:
 				break
-			continue
 
-		i += 2
-
+		i += 1
 		if inventory[i] != null:
 			break
-
-
+	
 	return inventory[i]
 
 #same as above but backwards

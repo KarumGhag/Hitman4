@@ -59,6 +59,9 @@ func pickUp() -> void:
 	if not canPickUp:
 		return
 	
+	if inInv:
+		return
+
 	var inventory = inventorySystem.inventory
 	for i in range(len(inventory)):
 		if inventory[i] == null:
