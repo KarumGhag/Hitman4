@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://nwu4t1v6dahu"]
+[gd_scene load_steps=3 format=3 uid="uid://nwu4t1v6dahu"]
 
 [ext_resource type="Script" path="res://InventorySystem/InventoryClass.gd" id="1_8jxnx"]
+[ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="2_3gxow"]
 
-[node name="Inventory" type="Node2D"]
+[node name="Inventory" type="Node2D" node_paths=PackedStringArray("currentItemUI", "nextItemUI", "previousItemUI")]
 script = ExtResource("1_8jxnx")
+currentItemUI = NodePath("current")
+nextItemUI = NodePath("next")
+previousItemUI = NodePath("previous")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="current" type="Sprite2D" parent="."]
+position = Vector2(499, 482)
+texture = ExtResource("2_3gxow")
+
+[node name="next" type="Sprite2D" parent="."]
+position = Vector2(689, 587)
+texture = ExtResource("2_3gxow")
+
+[node name="previous" type="Sprite2D" parent="."]
+position = Vector2(314, 599)
+texture = ExtResource("2_3gxow")

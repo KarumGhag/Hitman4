@@ -14,6 +14,7 @@ func _ready():
 		if inventory[i] != null:
 			currentItem = inventory[i]
 			break
+	
 
 func _process(_delta) -> void:
 
@@ -22,11 +23,12 @@ func _process(_delta) -> void:
 			inventory[i].global_position = player.holder.global_position
 
 	if Input.is_action_just_pressed("next"):
-		currentItem = getNext()
+		currentItem = inventory[getNext()]
+		updateUI()
 
 	if Input.is_action_just_pressed("last"):
-		currentItem = getPrevious()
-
+		currentItem = inventory[getPrevious()]
+		updateUI()
 
 	if currentItem:
 		currentItem.equiped = true	
@@ -43,12 +45,12 @@ func _process(_delta) -> void:
 #loops over the inventory forwards until a value is found and sets that to the next value
 
 
-func getNext() -> Item:
+func getNext() -> int:
 	var i : int = getCurrent()
 
 	#no items in inventory
 	if i == -1:
-		return
+		return -1
 
 	while true:
 		if i + 1 == len(inventory):
@@ -60,16 +62,16 @@ func getNext() -> Item:
 		if inventory[i] != null:
 			break
 	
-	return inventory[i]
+	return i
 
 #same as above but backwards
-func getPrevious() -> Item:
+func getPrevious() -> int:
 	var i : int = getCurrent()
 
 
 	#no items in inventory
 	if i == -1:
-		return
+		return -1
 
 	while true:
 		if i - 1 < 0:
@@ -83,7 +85,7 @@ func getPrevious() -> Item:
 			break
 
 
-	return inventory[i]
+	return i
 
 func getCurrent() -> int:
 	#goes over the list - if the current item is j and not null it returns j
@@ -106,3 +108,41 @@ func isEmpty() -> bool:
 			return false
 		
 	return true
+
+
+
+@export_subgroup("UI")
+@export var currentItemUI : Sprite2D
+@export var nextItemUI : Sprite2D
+@export var previousItemUI : Sprite2D
+
+var itemShowers : Array[Sprite2D] = [currentItemUI, nextItemUI, previousItemUI]
+
+#called whenever current item changes
+func updateUI() -> void:
+	var current : int = getCurrent()
+	#there are no items in the inventory so it should hide all items
+	if current == -1:
+		for i in range(len(itemShowers)):
+			itemShowers[i].hide()
+		return
+	
+
+	var next : int = getNext()
+	var previous : int = getPrevious()
+	currentItemUI.texture = inventory[current].image.texture
+
+	#there is only 1 item in the inventory so it should hide
+	if next == current:
+		nextItemUI.hide()
+		return
+
+	if previous == current:
+		previousItemUI.hide()
+		return
+	
+	#shows all items
+
+	print(inventory[next])
+	nextItemUI.texture = inventory[next].image.texture
+	previousItemUI.texture = inventory[previous].image.texture
