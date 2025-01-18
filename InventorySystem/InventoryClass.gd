@@ -8,6 +8,17 @@ var currentItem : Item
 
 var player : Player
 
+
+
+
+@export_subgroup("UI")
+@export var currentItemUI : Sprite2D
+@export var nextItemUI : Sprite2D
+@export var previousItemUI : Sprite2D
+
+var itemShowers : Array[Sprite2D] = [currentItemUI, nextItemUI, previousItemUI]
+
+
 func _ready():
 	inventory.resize(10)
 	for i in range(len(inventory)):
@@ -15,9 +26,14 @@ func _ready():
 			currentItem = inventory[i]
 			break
 	
+	for i in range(len(itemShowers)):
+		print(itemShowers[i])
+
+	
+	
+	
 
 func _process(_delta) -> void:
-
 	for i in range(len(inventory)):
 		if inventory[i] != null:
 			inventory[i].global_position = player.holder.global_position
@@ -111,12 +127,7 @@ func isEmpty() -> bool:
 
 
 
-@export_subgroup("UI")
-@export var currentItemUI : Sprite2D
-@export var nextItemUI : Sprite2D
-@export var previousItemUI : Sprite2D
 
-var itemShowers : Array[Sprite2D] = [currentItemUI, nextItemUI, previousItemUI]
 
 #called whenever current item changes
 func updateUI() -> void:
@@ -136,10 +147,14 @@ func updateUI() -> void:
 	if next == current:
 		nextItemUI.hide()
 		return
+	else:
+		nextItemUI.show()
 
 	if previous == current:
 		previousItemUI.hide()
 		return
+	else:
+		nextItemUI.show()
 	
 	#shows all items
 

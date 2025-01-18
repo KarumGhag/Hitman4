@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_emeej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg40i"]
-size = Vector2(12, 10)
+size = Vector2(8, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4d12m"]
-size = Vector2(10, 8)
+size = Vector2(12, 10)
 
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "selfCollider")]
 script = ExtResource("1_dflsj")

@@ -49,6 +49,6 @@ func hitBoxBody(body) -> void:
 	if body == self:
 		return
 	
-	if bounces == 0:
-		queue_free()
-		return
+	
+	queue_free()
+	return

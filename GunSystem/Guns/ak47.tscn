@@ -13,6 +13,7 @@ script = ExtResource("1_pmgcn")
 bullet = ExtResource("2_yppb3")
 shootPoint = NodePath("ShootPoint")
 auto = true
+bulletBounces = 0
 damage = 100.0
 bulletSpeed = 2000.0
 magSize = 32
@@ -21,7 +22,8 @@ pickUpArea = NodePath("PickupArea")
 image = NodePath("Icon")
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(10, 0)
+position = Vector2(13, 0)
+scale = Vector2(2, 2)
 texture = ExtResource("3_2461t")
 
 [node name="ShootPoint" type="Node2D" parent="."]
