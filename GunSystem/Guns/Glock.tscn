@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://div0tlygtvrua"]
+
+[ext_resource type="Script" path="res://GunSystem/GunClass.gd" id="1_h6t1u"]
+[ext_resource type="PackedScene" uid="uid://bg0e1ffv6s88g" path="res://GunSystem/Bullets/Bullet.tscn" id="2_hoeam"]
+[ext_resource type="PackedScene" uid="uid://bhb8li7we1p3k" path="res://GunSystem/pickup_area.tscn" id="4_qkv1b"]
+[ext_resource type="Texture2D" uid="uid://dt6vve5p8ot77" path="res://GunSystem/Guns/Glock.png" id="4_vt2og"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gkvrw"]
+radius = 100.005
+
+[sub_resource type="Animation" id="Animation_thona"]
+length = 0.54
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 3, 2, 0, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihb7t"]
+_data = {
+"Shoot": SubResource("Animation_thona")
+}
+
+[node name="pistol" type="Node2D" node_paths=PackedStringArray("shootPoint", "animationPlayer", "pickUpArea", "image")]
+script = ExtResource("1_h6t1u")
+bullet = ExtResource("2_hoeam")
+shootPoint = NodePath("ShootPoint")
+animationPlayer = NodePath("AnimationPlayer")
+damage = 100.0
+bulletSpeed = 1500.0
+itemName = "Pistol"
+pickUpArea = NodePath("PickupArea")
+image = NodePath("Image")
+
+[node name="PickupArea" parent="." instance=ExtResource("4_qkv1b")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_gkvrw")
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(29, -12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ihb7t")
+}
+speed_scale = 3.0
+
+[node name="Image" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(8, -5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_vt2og")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Art/Glock.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "dd2adab2d0e3c99a681a4a5fce43c887"

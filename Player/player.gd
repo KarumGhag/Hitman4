@@ -11,13 +11,16 @@ var steering : Vector2
 var mass : float = 2
 
 @export var holder : Node2D
+@export var holderRotater : Node2D
+
+@export var cam : Camera2D
 
 @onready var inventorySystem = get_node("/root/InventorySystem")
 
 func _ready() -> void:
 	inventorySystem.player = self
 
-func _process(_delta) -> void:
+func _process(delta) -> void:
 	
 
 	direction = Input.get_vector("left", "right", "up", "down")
@@ -29,6 +32,6 @@ func _process(_delta) -> void:
 	velocity += steering * accel
 
 
-	look_at(get_global_mouse_position())
+	#look_at(get_global_mouse_position())
 
 	move_and_slide()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_muac8"]
 [ext_resource type="PackedScene" uid="uid://1l13jv08hnfd" path="res://Player/player.tscn" id="3_1fj7k"]
-[ext_resource type="PackedScene" uid="uid://div0tlygtvrua" path="res://GunSystem/Guns/pistol.tscn" id="4_xlj8e"]
+[ext_resource type="PackedScene" uid="uid://div0tlygtvrua" path="res://GunSystem/Guns/Glock.tscn" id="4_xlj8e"]
 [ext_resource type="PackedScene" uid="uid://tkw35h5qkby1" path="res://GunSystem/Guns/ak47.tscn" id="5_e5dhs"]
 [ext_resource type="PackedScene" uid="uid://dy1jcrh400c5i" path="res://GunSystem/Guns/shotgun.tscn" id="5_gmdp7"]
 

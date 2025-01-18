@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnwhdmk2nr7fx"
-valid=false
+uid="uid://dt6vve5p8ot77"
+path="res://.godot/imported/Glock.png-7e28b5028b69d4d443a5c5e95632ea0d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Art/AK47Sprite.png"
+source_file="res://GunSystem/Guns/Glock.png"
+dest_files=["res://.godot/imported/Glock.png-7e28b5028b69d4d443a5c5e95632ea0d.ctex"]
 
 [params]
 

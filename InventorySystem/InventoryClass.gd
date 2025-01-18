@@ -7,8 +7,7 @@ var inventory : Array[Item] = [null]
 var currentItem : Item
 
 var player : Player
-
-
+var camera : Camera2D
 
 
 @export_subgroup("UI")
@@ -32,8 +31,10 @@ func _ready():
 	
 	
 	
+	
 
 func _process(_delta) -> void:
+	camera = player.cam
 	for i in range(len(inventory)):
 		if inventory[i] != null:
 			inventory[i].global_position = player.holder.global_position
@@ -55,6 +56,15 @@ func _process(_delta) -> void:
 			if inventory[i] != currentItem:
 				inventory[i].equiped = false
 
+
+
+	if currentItem != null:
+		if get_global_mouse_position().x < player.global_position.x:
+			currentItem.image.flip_v = true
+			player.holderRotater.rotation_degrees = 180
+		else:
+			currentItem.image.flip_v = false
+			player.holderRotater.rotation_degrees = 0
 
 
 

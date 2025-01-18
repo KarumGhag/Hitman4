@@ -15,9 +15,17 @@ run/main_scene="res://World/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Art/icon.svg"
 
+[aseprite]
+
+animation/loop/enabled=false
+
 [autoload]
 
 InventorySystem="*res://InventorySystem/Inventory.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
 [input]
 

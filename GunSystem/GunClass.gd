@@ -5,6 +5,7 @@ class_name GunClass
 @export_group("Nodes")
 @export var bullet : PackedScene
 @export var shootPoint : Node
+@export var animationPlayer : AnimationPlayer
 
 @export_group("Stats")
 #basic gun stats
@@ -41,6 +42,12 @@ var canShoot : bool = true
 
 var target : Vector2
 
+
+
+@export_subgroup("Camera")
+@export var shakeAmount : float = 5
+
+
 func itemReady() -> void:
 	bulletsLeft = magSize
 	fireCoolDownTimer = Timer.new()
@@ -70,6 +77,8 @@ func shootLocation() -> Vector2:
 	return target.normalized()
 
 func shoot() -> void:
+
+
 	if bulletsLeft <= 0:
 		reload()
 		return
@@ -82,6 +91,11 @@ func shoot() -> void:
 		if bulletsLeft <= 0:
 			reload()
 			break
+
+
+		if animationPlayer != null:
+			animationPlayer.play("Shoot")
+
 
 		var bulletDirection : Vector2 = shootLocation()
 		var bulletInstance = bullet.instantiate()
@@ -98,6 +112,8 @@ func shoot() -> void:
 		
 		get_tree().get_root().add_child(bulletInstance)
 
+		var camera : Camera = inventorySystem.camera
+		camera.shakeCam(shakeAmount)
 		
 		if shotgun or multiBulletWait == 0:
 			continue
@@ -112,4 +128,3 @@ func wait(seconds : float) -> void:
 func reload() -> void:
 	await wait(reloadTime)
 	bulletsLeft = magSize
-

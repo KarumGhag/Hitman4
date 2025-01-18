@@ -39,7 +39,6 @@ func _process(_delta) -> void:
 	#	velocity = velocity.bounce(collision.get_normal())
 	#	bounces -= 1
 
-
 	move_and_slide()
 	
 	
@@ -51,4 +50,3 @@ func hitBoxBody(body) -> void:
 	
 	
 	queue_free()
-	return

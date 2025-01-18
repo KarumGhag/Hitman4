@@ -1,12 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://tkw35h5qkby1"]
+[gd_scene load_steps=8 format=3 uid="uid://tkw35h5qkby1"]
 
 [ext_resource type="Script" path="res://GunSystem/GunClass.gd" id="1_pmgcn"]
 [ext_resource type="PackedScene" uid="uid://bg0e1ffv6s88g" path="res://GunSystem/Bullets/Bullet.tscn" id="2_yppb3"]
-[ext_resource type="Texture2D" uid="uid://dfx43055ebmy5" path="res://Art/ak47.png" id="3_2461t"]
+[ext_resource type="Texture2D" uid="uid://04qkqudlaqs1" path="res://GunSystem/Guns/AK47.png" id="4_5iyye"]
 [ext_resource type="PackedScene" uid="uid://bhb8li7we1p3k" path="res://GunSystem/pickup_area.tscn" id="4_miqs5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gkvrw"]
 radius = 100.005
+
+[sub_resource type="Animation" id="Animation_8mtb4"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s8rfc"]
+_data = {
+"default": SubResource("Animation_8mtb4")
+}
 
 [node name="AK47" type="Node2D" node_paths=PackedStringArray("shootPoint", "pickUpArea", "image")]
 script = ExtResource("1_pmgcn")
@@ -19,17 +40,40 @@ bulletSpeed = 2000.0
 magSize = 32
 itemName = "AK47"
 pickUpArea = NodePath("PickupArea")
-image = NodePath("Icon")
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(13, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("3_2461t")
-
-[node name="ShootPoint" type="Node2D" parent="."]
-position = Vector2(49, -5)
+image = NodePath("Image")
 
 [node name="PickupArea" parent="." instance=ExtResource("4_miqs5")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_gkvrw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s8rfc")
+}
+
+[node name="ShootPoint" type="Node2D" parent="."]
+position = Vector2(53, -1.19209e-07)
+
+[node name="Image" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(5, -1)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_5iyye")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Art/AK47.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "f4daf48616685e03bb906755e1a26583"
