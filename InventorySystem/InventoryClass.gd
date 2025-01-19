@@ -17,6 +17,8 @@ var camera : Camera2D
 
 var itemShowers : Array[Sprite2D] = [currentItemUI, nextItemUI, previousItemUI]
 
+var lastEquipedItem : int
+var holstered : bool = false
 
 func _ready():
 	inventory.resize(10)
@@ -46,6 +48,19 @@ func _process(_delta) -> void:
 	if Input.is_action_just_pressed("last"):
 		currentItem = inventory[getPrevious()]
 		updateUI()
+
+	if Input.is_action_just_pressed("holster") and not isEmpty():
+		if not holstered:
+			lastEquipedItem = getCurrent()
+			currentItem.equiped = false
+			currentItem = null
+		else:
+			currentItem = inventory[lastEquipedItem]
+			currentItem.equiped = true
+
+		holstered = not holstered #toggles the value
+
+
 
 	if currentItem:
 		currentItem.equiped = true	
@@ -128,6 +143,7 @@ func getCurrent() -> int:
 	return -1
 
 
+#returning true means the inventory is empty
 func isEmpty() -> bool:
 	for i in range(len(inventory)):
 		if inventory[i] != null:

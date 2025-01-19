@@ -30,6 +30,7 @@ _data = {
 }
 
 [node name="Remington" type="Node2D" node_paths=PackedStringArray("shootPoint", "animationPlayer", "pickUpArea", "image")]
+position = Vector2(0, 4)
 script = ExtResource("1_4p5ho")
 bullet = ExtResource("2_bqip4")
 shootPoint = NodePath("ShootPoint")

@@ -5,13 +5,21 @@ class_name Camera
 @export_subgroup("Camera")
 @export var leanScale : float = 0.1
 @export var leanSmoothness : float = 30
-
+@export var player : Player
 
 func _process(delta):
-	var directionToMouse : Vector2 = (get_global_mouse_position() - position).normalized()
-	var distanceToMouse : float = get_global_mouse_position().distance_to(position)
-	var lean = directionToMouse * distanceToMouse * leanScale
-	offset = lerp(offset, lean, delta * leanSmoothness)
+	#camera will only lean if the player is holding an item
+	
+
+	if player.inventorySystem.currentItem != null:
+		var directionToMouse : Vector2 = (get_global_mouse_position() - position).normalized()
+		var distanceToMouse : float = get_global_mouse_position().distance_to(position)
+		var lean = directionToMouse * distanceToMouse * leanScale
+		offset = lerp(offset, lean, delta * leanSmoothness)
+	else:
+		offset = Vector2.ZERO
+
+
 
 func shakeCam(shakeAmount) -> void:
 	var rng = RandomNumberGenerator.new()

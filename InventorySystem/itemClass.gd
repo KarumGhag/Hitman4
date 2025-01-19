@@ -72,9 +72,9 @@ func pickUp() -> void:
 			inventorySystem.inventory[i] = self
 			inInv = true
 
-			if autoEquip:
-				inventorySystem.currentItem = inventorySystem.inventory[i]
-				equiped = true
+			#if autoEquip:
+			inventorySystem.currentItem = inventorySystem.inventory[i]
+			equiped = true
 				#inventorySystem.updateUI()
 
 			return
