@@ -8,6 +8,7 @@ class_name Item
 var canPickUp : bool 
 
 @export var image : Sprite2D
+@export var inventoryImage : CompressedTexture2D
 var inInv : bool = false
 
 @export var equiped : bool = false

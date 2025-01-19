@@ -151,7 +151,7 @@ func updateUI() -> void:
 
 	var next : int = getNext()
 	var previous : int = getPrevious()
-	currentItemUI.texture = inventory[current].image.texture
+	currentItemUI.texture = inventory[current].inventoryImage
 
 	#there is only 1 item in the inventory so it should hide
 	if next == current:
@@ -169,5 +169,5 @@ func updateUI() -> void:
 	#shows all items
 
 	print(inventory[next])
-	nextItemUI.texture = inventory[next].image.texture
-	previousItemUI.texture = inventory[previous].image.texture
+	nextItemUI.texture = inventory[next].inventoryImage
+	previousItemUI.texture = inventory[previous].inventoryImage

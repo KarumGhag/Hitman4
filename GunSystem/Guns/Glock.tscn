@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://div0tlygtvrua"]
+[gd_scene load_steps=9 format=3 uid="uid://div0tlygtvrua"]
 
 [ext_resource type="Script" path="res://GunSystem/GunClass.gd" id="1_h6t1u"]
 [ext_resource type="PackedScene" uid="uid://bg0e1ffv6s88g" path="res://GunSystem/Bullets/Bullet.tscn" id="2_hoeam"]
+[ext_resource type="Texture2D" uid="uid://cd31bvmuo5ou3" path="res://Art/PNG_Guns/Glock.png" id="3_1h35j"]
 [ext_resource type="PackedScene" uid="uid://bhb8li7we1p3k" path="res://GunSystem/pickup_area.tscn" id="4_qkv1b"]
 [ext_resource type="Texture2D" uid="uid://dt6vve5p8ot77" path="res://GunSystem/Guns/Glock.png" id="4_vt2og"]
 
@@ -38,6 +39,7 @@ bulletSpeed = 1500.0
 itemName = "Pistol"
 pickUpArea = NodePath("PickupArea")
 image = NodePath("Image")
+inventoryImage = ExtResource("3_1h35j")
 
 [node name="PickupArea" parent="." instance=ExtResource("4_qkv1b")]
 
@@ -74,6 +76,6 @@ metadata/_aseprite_wizard_config_ = {
 "only_visible": true,
 "player": "AnimationPlayer",
 "slice": "",
-"source": "res://Art/Glock.aseprite"
+"source": "res://Art/ASP_Guns/Glock.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "dd2adab2d0e3c99a681a4a5fce43c887"

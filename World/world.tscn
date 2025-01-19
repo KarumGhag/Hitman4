@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://1l13jv08hnfd" path="res://Player/player.tscn" id="3_1fj7k"]
 [ext_resource type="PackedScene" uid="uid://div0tlygtvrua" path="res://GunSystem/Guns/Glock.tscn" id="4_xlj8e"]
 [ext_resource type="PackedScene" uid="uid://tkw35h5qkby1" path="res://GunSystem/Guns/ak47.tscn" id="5_e5dhs"]
-[ext_resource type="PackedScene" uid="uid://dy1jcrh400c5i" path="res://GunSystem/Guns/shotgun.tscn" id="5_gmdp7"]
+[ext_resource type="PackedScene" uid="uid://dy1jcrh400c5i" path="res://GunSystem/Guns/Remington.tscn" id="5_gmdp7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cpu4h"]
 vertices = PackedVector2Array(1811.09, 15.9609, 861.75, 206, 861.75, 136, -158.063, 9.03125, 231, 136, -165.93, 1246.42, 231, 760.5, 1821.9, 1137.53, 301, 760.5, 301, 206)
