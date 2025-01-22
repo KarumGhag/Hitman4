@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://div0tlygtvrua"]
+[gd_scene load_steps=10 format=3 uid="uid://div0tlygtvrua"]
 
 [ext_resource type="Script" path="res://GunSystem/GunClass.gd" id="1_h6t1u"]
 [ext_resource type="PackedScene" uid="uid://bg0e1ffv6s88g" path="res://GunSystem/Bullets/Bullet.tscn" id="2_hoeam"]
 [ext_resource type="Texture2D" uid="uid://cd31bvmuo5ou3" path="res://Art/PNG_Guns/Glock.png" id="3_1h35j"]
+[ext_resource type="PackedScene" uid="uid://dxy0lfrndp075" path="res://GunSystem/BulletVisuals/bullet_trail.tscn" id="3_rudob"]
 [ext_resource type="PackedScene" uid="uid://bhb8li7we1p3k" path="res://GunSystem/pickup_area.tscn" id="4_qkv1b"]
 [ext_resource type="Texture2D" uid="uid://dt6vve5p8ot77" path="res://GunSystem/Guns/Glock.png" id="4_vt2og"]
 
@@ -36,6 +37,7 @@ shootPoint = NodePath("ShootPoint")
 animationPlayer = NodePath("AnimationPlayer")
 damage = 100.0
 bulletSpeed = 1500.0
+bulletTrail = ExtResource("3_rudob")
 itemName = "Pistol"
 pickUpArea = NodePath("PickupArea")
 image = NodePath("Image")

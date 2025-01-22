@@ -48,7 +48,11 @@ var target : Vector2
 @export var shakeAmount : float = 5
 
 
+@export_subgroup("Particles")
+@export var bulletTrail : PackedScene
+
 func itemReady() -> void:
+
 	bulletsLeft = magSize
 	fireCoolDownTimer = Timer.new()
 	fireCoolDownTimer.one_shot = true
@@ -97,6 +101,8 @@ func shoot() -> void:
 			animationPlayer.play("Shoot")
 
 
+
+
 		var bulletDirection : Vector2 = shootLocation()
 		var bulletInstance = bullet.instantiate()
 		bulletInstance.global_position = shootPoint.global_position
@@ -109,8 +115,22 @@ func shoot() -> void:
 		bulletInstance.damage = damage
 		bulletInstance.bounces = bulletBounces
 		bulletInstance.speed = bulletSpeed
+
 		
+
 		get_tree().get_root().add_child(bulletInstance)
+
+
+
+		if bulletTrail != null:
+			var trailInstance = bulletTrail.instantiate()
+			trailInstance.emitting = true
+			bulletInstance.bulletTrail = trailInstance
+			trailInstance.global_position = bulletInstance.global_position
+			trailInstance.direction = -bulletDirection
+			get_tree().get_root().add_child(trailInstance)
+		
+
 
 		var camera : Camera = inventorySystem.camera
 		camera.shakeCam(shakeAmount)

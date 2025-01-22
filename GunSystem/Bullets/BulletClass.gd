@@ -16,6 +16,9 @@ var speed : float
 var direction : Vector2
 
 @export var selfCollider : CollisionShape2D
+var bulletTrail : CPUParticles2D
+
+@export var impact : PackedScene
 
 func _ready() -> void:
 	originPoint = global_position
@@ -28,8 +31,10 @@ func _process(_delta) -> void:
 	if (fireDistance != 0) and distanceTravelled >= fireDistance:
 		queue_free()
 
+	if bulletTrail != null:
+		bulletTrail.position = global_position
 
-	
+	move_and_slide()
 
 	#Doesnt work fully - might remove bounces from bullets
 
@@ -39,7 +44,6 @@ func _process(_delta) -> void:
 	#	velocity = velocity.bounce(collision.get_normal())
 	#	bounces -= 1
 
-	move_and_slide()
 	
 	
 
@@ -49,4 +53,16 @@ func hitBoxBody(body) -> void:
 		return
 	
 	
+	if bulletTrail != null:
+		bulletTrail.fading = true
+
+	if impact != null:
+		var impactInst = impact.instantiate()
+		impactInst.emitting = true
+		impactInst.global_position = global_position
+
+		get_tree().get_root().add_child(impactInst)
+
+	
 	queue_free()
+	

@@ -20,7 +20,7 @@ var mass : float = 2
 func _ready() -> void:
 	inventorySystem.player = self
 
-func _process(delta) -> void:
+func _process(delta : float) -> void:
 	
 
 	direction = Input.get_vector("left", "right", "up", "down")
@@ -32,6 +32,10 @@ func _process(delta) -> void:
 	velocity += steering * accel
 
 
-	#look_at(get_global_mouse_position())
 
 	move_and_slide()
+
+
+func recoil(amount : float, recoilDirection : Vector2) -> void:
+	recoilDirection = recoilDirection.normalized()
+	velocity = recoilDirection * amount

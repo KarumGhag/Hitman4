@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2mermxmj30pp"]
+
+[sub_resource type="Curve" id="Curve_gh3ox"]
+min_value = 1.0
+max_value = 10.0
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_e6mx0"]
+offsets = PackedFloat32Array(0, 0.373333)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="impact" type="CPUParticles2D"]
+emitting = false
+amount = 150
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 50)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_curve = SubResource("Curve_gh3ox")
+color_ramp = SubResource("Gradient_e6mx0")

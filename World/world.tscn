@@ -24,8 +24,8 @@ navigation_polygon = SubResource("NavigationPolygon_cpu4h")
 position = Vector2(266, 171)
 
 [node name="Icon" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D"]
-position = Vector2(270.25, -0.125001)
-scale = Vector2(5.01172, 0.392578)
+position = Vector2(1466.25, -0.125001)
+scale = Vector2(23.6992, 0.392578)
 texture = ExtResource("1_muac8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]

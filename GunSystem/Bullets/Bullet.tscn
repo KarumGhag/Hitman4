@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg0e1ffv6s88g"]
+[gd_scene load_steps=5 format=3 uid="uid://bg0e1ffv6s88g"]
 
 [ext_resource type="Script" path="res://GunSystem/Bullets/BulletClass.gd" id="1_dflsj"]
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_emeej"]
+[ext_resource type="PackedScene" uid="uid://c2mermxmj30pp" path="res://GunSystem/BulletVisuals/impact.tscn" id="2_sbq27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4d12m"]
 size = Vector2(12, 10)
@@ -9,6 +10,7 @@ size = Vector2(12, 10)
 [node name="Bullet" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_dflsj")
 hitbox = NodePath("hitbox")
+impact = ExtResource("2_sbq27")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(-3.57628e-07, 0)
