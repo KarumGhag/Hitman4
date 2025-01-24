@@ -30,11 +30,12 @@ _data = {
 "Shoot": SubResource("Animation_thona")
 }
 
-[node name="pistol" type="Node2D" node_paths=PackedStringArray("shootPoint", "animationPlayer", "pickUpArea", "image")]
+[node name="pistol" type="Node2D" node_paths=PackedStringArray("shootPoint", "animationPlayer", "shootVectorPoint", "pickUpArea", "image")]
 script = ExtResource("1_h6t1u")
 bullet = ExtResource("2_hoeam")
 shootPoint = NodePath("ShootPoint")
 animationPlayer = NodePath("AnimationPlayer")
+shootVectorPoint = NodePath("ShootVectorPoint")
 damage = 100.0
 bulletSpeed = 1500.0
 bulletTrail = ExtResource("3_rudob")
@@ -81,3 +82,5 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Art/ASP_Guns/Glock.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "dd2adab2d0e3c99a681a4a5fce43c887"
+
+[node name="ShootVectorPoint" type="Node2D" parent="."]

@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bg0e1ffv6s88g" path="res://GunSystem/Bullets/Bullet.tscn" id="2_bqip4"]
 [ext_resource type="PackedScene" uid="uid://dxy0lfrndp075" path="res://GunSystem/BulletVisuals/bullet_trail.tscn" id="3_8qkbq"]
 [ext_resource type="Texture2D" uid="uid://bpd1850mu4yx6" path="res://Art/PNG_Guns/Remington.png" id="3_yk7eu"]
-[ext_resource type="Texture2D" uid="uid://ckpbvle60gt62" path="res://GunSystem/Guns/remington.png" id="4_74sqr"]
 [ext_resource type="PackedScene" uid="uid://bhb8li7we1p3k" path="res://GunSystem/pickup_area.tscn" id="4_c6lcd"]
+[ext_resource type="Texture2D" uid="uid://ckpbvle60gt62" path="res://GunSystem/Guns/Remington.png" id="6_mw172"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gkvrw"]
 radius = 100.005
 
-[sub_resource type="Animation" id="Animation_jp26t"]
+[sub_resource type="Animation" id="Animation_kn0y2"]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -27,15 +27,16 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5bxwq"]
 _data = {
-"Shoot": SubResource("Animation_jp26t")
+"Pump": SubResource("Animation_kn0y2")
 }
 
-[node name="Remington" type="Node2D" node_paths=PackedStringArray("shootPoint", "animationPlayer", "pickUpArea", "image")]
+[node name="Remington" type="Node2D" node_paths=PackedStringArray("shootPoint", "animationPlayer", "shootVectorPoint", "pickUpArea", "image")]
 position = Vector2(0, 4)
 script = ExtResource("1_4p5ho")
 bullet = ExtResource("2_bqip4")
 shootPoint = NodePath("ShootPoint")
 animationPlayer = NodePath("AnimationPlayer")
+shootVectorPoint = NodePath("ShootVectorPoint")
 auto = true
 shotgun = true
 fireCoolDown = 0.5
@@ -58,7 +59,7 @@ inventoryImage = ExtResource("3_yk7eu")
 shape = SubResource("CircleShape2D_gkvrw")
 
 [node name="ShootPoint" type="Node2D" parent="."]
-position = Vector2(79, -7)
+position = Vector2(62, -5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -68,9 +69,8 @@ speed_scale = 2.0
 
 [node name="Image" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(17, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("4_74sqr")
+texture = ExtResource("6_mw172")
 hframes = 3
 vframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
@@ -89,6 +89,9 @@ metadata/_aseprite_wizard_config_ = {
 "only_visible": true,
 "player": "AnimationPlayer",
 "slice": "",
-"source": "res://Art/Guns/remington.aseprite"
+"source": "res://Art/ASP_Guns/Remington.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "888f593811a85d20727d4a38ad7de2db"
+metadata/_aseprite_wizard_source_file_hash_ = "994a12906d26e62d3cea1f43e0f51ae9"
+
+[node name="ShootVectorPoint" type="Node2D" parent="."]
+position = Vector2(-22, 0)

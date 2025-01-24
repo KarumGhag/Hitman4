@@ -30,11 +30,12 @@ _data = {
 "default": SubResource("Animation_8mtb4")
 }
 
-[node name="AK47" type="Node2D" node_paths=PackedStringArray("shootPoint", "animationPlayer", "pickUpArea", "image")]
+[node name="AK47" type="Node2D" node_paths=PackedStringArray("shootPoint", "animationPlayer", "shootVectorPoint", "pickUpArea", "image")]
 script = ExtResource("1_pmgcn")
 bullet = ExtResource("2_yppb3")
 shootPoint = NodePath("ShootPoint")
 animationPlayer = NodePath("AnimationPlayer")
+shootVectorPoint = NodePath("ShootVectorPoint")
 auto = true
 bulletBounces = 0
 damage = 100.0
@@ -81,3 +82,5 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Art/ASP_Guns/AK47.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "f4daf48616685e03bb906755e1a26583"
+
+[node name="ShootVectorPoint" type="Node2D" parent="."]

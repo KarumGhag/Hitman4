@@ -4,8 +4,9 @@ class_name GunClass
 
 @export_group("Nodes")
 @export var bullet : PackedScene
-@export var shootPoint : Node
+@export var shootPoint : Node2D
 @export var animationPlayer : AnimationPlayer
+@export var shootVectorPoint : Node2D
 
 @export_group("Stats")
 #basic gun stats
@@ -76,7 +77,7 @@ func itemProcess(_delta) -> void:
 
 func shootLocation() -> Vector2:
 	var innacuracy = randf_range(-spread, spread)
-	target = Vector2.from_angle(shootPoint.global_position.angle_to_point(get_global_mouse_position()) + innacuracy)
+	target = Vector2.from_angle(shootVectorPoint.global_position.angle_to_point(get_global_mouse_position()) + innacuracy)
 
 	return target.normalized()
 
@@ -134,6 +135,9 @@ func shoot() -> void:
 
 		var camera : Camera = inventorySystem.camera
 		camera.shakeCam(shakeAmount)
+
+		if animationPlayer != null:
+			animationPlayer.play("Pump")
 		
 		if shotgun or multiBulletWait == 0:
 			continue
