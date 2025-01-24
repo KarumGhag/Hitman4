@@ -58,11 +58,11 @@ libraries = {
 }
 
 [node name="ShootPoint" type="Node2D" parent="."]
-position = Vector2(53, -1.19209e-07)
+position = Vector2(63, -1)
 
 [node name="Image" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(5, -1)
+position = Vector2(4, 2)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_5iyye")
 metadata/_aseprite_wizard_interface_config_ = {
@@ -81,6 +81,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Art/ASP_Guns/AK47.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "f4daf48616685e03bb906755e1a26583"
+metadata/_aseprite_wizard_source_file_hash_ = "a85880fc567192e9dc006601b6fb1924"
 
 [node name="ShootVectorPoint" type="Node2D" parent="."]
+position = Vector2(-13, 0)

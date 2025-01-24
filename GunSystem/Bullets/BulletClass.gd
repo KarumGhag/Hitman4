@@ -29,6 +29,7 @@ func _ready() -> void:
 func _process(_delta) -> void:
 	distanceTravelled = global_position.distance_to(originPoint)
 	if (fireDistance != 0) and distanceTravelled >= fireDistance:
+		killParticles()
 		queue_free()
 
 	if bulletTrail != null:
@@ -51,10 +52,14 @@ func _process(_delta) -> void:
 func hitBoxBody(body) -> void:
 	if body == self:
 		return
+
+	killParticles()
+
+	queue_free()
 	
-	
+func killParticles() -> void:
 	if bulletTrail != null:
-		bulletTrail.fading = true
+		bulletTrail.kill = true
 
 	if impact != null:
 		var impactInst = impact.instantiate()
@@ -62,7 +67,3 @@ func hitBoxBody(body) -> void:
 		impactInst.global_position = global_position
 
 		get_tree().get_root().add_child(impactInst)
-
-	
-	queue_free()
-	

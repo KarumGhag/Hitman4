@@ -82,3 +82,4 @@ libraries = {
 }
 
 [node name="ShootVectorPoint" type="Node2D" parent="."]
+position = Vector2(-1, -6)

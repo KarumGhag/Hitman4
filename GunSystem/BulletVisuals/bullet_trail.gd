@@ -2,12 +2,18 @@ extends CPUParticles2D
 
 class_name BulletTrail
 
-var fading : bool = false
+var kill : bool = false
 var timeLeft : float = 100
 
 func _process(_delta) -> void:
-	if fading:
+	if kill:
 		one_shot = true
+		await wait(1)
+		queue_free()
 	
-	#print(emitting)
+
+
+
+func wait(seconds : float) -> void:
+	await get_tree().create_timer(seconds).timeout
 		

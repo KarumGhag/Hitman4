@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2mermxmj30pp"]
+[gd_scene load_steps=4 format=3 uid="uid://c2mermxmj30pp"]
+
+[ext_resource type="Script" path="res://GunSystem/BulletVisuals/FreeParticles.gd" id="1_6dtjp"]
 
 [sub_resource type="Curve" id="Curve_gh3ox"]
 min_value = 1.0
@@ -24,3 +26,5 @@ initial_velocity_min = 150.0
 initial_velocity_max = 250.0
 scale_amount_curve = SubResource("Curve_gh3ox")
 color_ramp = SubResource("Gradient_e6mx0")
+script = ExtResource("1_6dtjp")
+timeAfterSpawn = 1.0
