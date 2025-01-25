@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://1l13jv08hnfd"]
+[gd_scene load_steps=4 format=3 uid="uid://1l13jv08hnfd"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_4eru0"]
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_n4aa2"]
-[ext_resource type="Script" path="res://Player/Camera.gd" id="3_l2l2i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tf50w"]
 size = Vector2(62, 62)
@@ -12,7 +11,7 @@ script = ExtResource("1_4eru0")
 accel = 0.6
 holder = NodePath("ItemHolderRotater/ItemHolder")
 holderRotater = NodePath("ItemHolderRotater")
-cam = NodePath("Camera2D")
+cam = NodePath("")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
@@ -28,7 +27,3 @@ shape = SubResource("RectangleShape2D_tf50w")
 
 [node name="ItemHolder" type="Node2D" parent="ItemHolderRotater"]
 position = Vector2(31, 0)
-
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("3_l2l2i")
-player = NodePath("..")

@@ -10,7 +10,6 @@ class_name Camera
 @export var leanSmoothness : float = 30
 @export var player : Player
 
-var maxDist : int = 150
 
 var mousePos : Vector2
 var directionToMouse : Vector2
@@ -18,14 +17,20 @@ var distanceToMouse : float
 
 var lean : Vector2
 
+@export var offsetLabel : Label
+
+
+#dear future me who will eventually have this same problem
+#the fix is to use this exact code and do NOT make the camera a child of the player
+#instead put it into the world and set the global positon equal to the player's global position
+
 func _process(delta):
-	#camera will only lean if the player is holding an item
-	
-	mousePos = get_viewport().get_mouse_position()
+	mousePos = get_global_mouse_position()
 
 	directionToMouse = (mousePos - position).normalized()
 	distanceToMouse = mousePos.distance_to(position)
 
+	#camera leans more when holding an item
 	if player.inventorySystem.currentItem != null:
 		lean = directionToMouse * distanceToMouse * heldLean
 	else:
@@ -33,9 +38,9 @@ func _process(delta):
 	
 	offset = lerp(offset, lean, delta * leanSmoothness)
 
+	global_position = player.global_position
 
-	distanceToMouse = clamp(distanceToMouse, 0, maxDist)
-
+	
 
 func shakeCam(shakeAmount) -> void:
 	var rng = RandomNumberGenerator.new()
