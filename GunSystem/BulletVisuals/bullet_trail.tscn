@@ -4,7 +4,7 @@
 
 [sub_resource type="Curve" id="Curve_3gtio"]
 max_value = 7.0
-_data = [Vector2(0.00561798, 6.84615), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1.69231), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_adh82"]

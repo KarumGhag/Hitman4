@@ -6,12 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tf50w"]
 size = Vector2(62, 62)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("holder", "holderRotater", "cam")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("holder", "holderRotater")]
 script = ExtResource("1_4eru0")
 accel = 0.6
 holder = NodePath("ItemHolderRotater/ItemHolder")
 holderRotater = NodePath("ItemHolderRotater")
-cam = NodePath("")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(0, -1)

@@ -20,9 +20,12 @@ var bulletTrail : CPUParticles2D
 
 @export var impact : PackedScene
 
+var knockback : float
+
 func _ready() -> void:
 	originPoint = global_position
 	hitbox.connect("body_entered", hitBoxBody)
+	hitbox.connect("area_entered", hitBoxArea)
 	
 	velocity = speed * direction
 
@@ -37,6 +40,7 @@ func _process(_delta) -> void:
 
 	move_and_slide()
 
+
 	#Doesnt work fully - might remove bounces from bullets
 
 	#var collision = move_and_collide(velocity * delta)
@@ -50,20 +54,42 @@ func _process(_delta) -> void:
 
 
 func hitBoxBody(body) -> void:
-	if body == self:
+	
+	var tempVel : Vector2 = velocity
+	velocity = Vector2.ZERO
+	print(velocity)
+	if body is BulletClass:
+		velocity = tempVel
 		return
 
+	
 	killParticles()
-
 	queue_free()
+
+func hitBoxArea(area) -> void:
+	if area is HitBoxComponent:
+		killParticles()
+
+		var attack : Attack = Attack.new()
+
+		attack.damage = damage
+		attack.knockback = knockback
+		attack.attackPos = global_position
+
+		area.damage(attack)
+		
+
+		
+		queue_free()
 	
 func killParticles() -> void:
-	if bulletTrail != null:
-		bulletTrail.kill = true
-
 	if impact != null:
 		var impactInst = impact.instantiate()
 		impactInst.emitting = true
 		impactInst.global_position = global_position
-
+		impactInst.direction = -direction
 		get_tree().get_root().add_child(impactInst)
+
+	if bulletTrail != null:
+		bulletTrail.kill = true
+

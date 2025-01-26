@@ -7,7 +7,15 @@ class_name Enemy
 
 @export var lineOFSight : RayCast2D
 
+## A node called this
+## This rotates some parts of it but not everything
 @export var toRotate : Node2D
+
+
+@export var debugLabel : Label
+var direction : Vector2
+
+@export var fsm : EnemyFSM
 
 func _process(_delta) -> void:
 	lineOFSight.target_position.x = getLOSVector().x
@@ -16,6 +24,13 @@ func _process(_delta) -> void:
 	toRotate.look_at(player.global_position)
 
 	move_and_slide()
+
+	direction = fsm.currentState.direction
+	
+	debugLabel.text = "State: " + str(fsm.currentState) + "\nDirection: " + str(direction) + "\nSpeed: " + str(velocity)
+	if fsm.currentState is WanderState:
+		debugLabel.text = "State: " + str(fsm.currentState) + "\nDirection: " + str(direction) + "\nSpeed: " + str(velocity) + "\nNextDir: " + str(fsm.currentState.pickDirTimer.time_left)
+	
 
 func getLOSVector() -> Vector2:
 	

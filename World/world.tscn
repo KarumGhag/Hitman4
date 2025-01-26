@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq71lr407eab8"]
+[gd_scene load_steps=11 format=3 uid="uid://cq71lr407eab8"]
 
 [ext_resource type="Texture2D" uid="uid://jffjcag0lvea" path="res://Art/icon.svg" id="1_muac8"]
 [ext_resource type="PackedScene" uid="uid://1l13jv08hnfd" path="res://Player/player.tscn" id="3_1fj7k"]
@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://dy1jcrh400c5i" path="res://GunSystem/Guns/Remington.tscn" id="5_gmdp7"]
 [ext_resource type="PackedScene" uid="uid://c6q2stvu2jesg" path="res://GunSystem/Guns/uzi.tscn" id="6_erjig"]
 [ext_resource type="Script" path="res://Player/Camera.gd" id="7_f2yqc"]
+[ext_resource type="PackedScene" uid="uid://s8o2fn2d2lu8" path="res://GunSystem/Bullets/enemy.tscn" id="8_og20w"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cpu4h"]
-vertices = PackedVector2Array(1811.09, 15.9609, 861.75, 206, 861.75, 136, -158.063, 9.03125, 231, 136, -165.93, 1246.42, 231, 760.5, 1821.9, 1137.53, 301, 760.5, 301, 206)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4), PackedInt32Array(5, 3, 4, 6), PackedInt32Array(7, 5, 6, 8), PackedInt32Array(0, 7, 8, 1), PackedInt32Array(1, 8, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1821, 6, 1832, 1147, -176, 1257, -168, -1)])
+vertices = PackedVector2Array(7073.3, -2027.82, 6658.64, 4256, 861.75, 224, 861.75, 118, -2602.08, 4256, 301, 760.5, -2649.92, -1868.16, 237.25, 118, 237.25, 136, 195, 136, 195, 760.5, 301, 224)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5), PackedInt32Array(6, 0, 3, 7), PackedInt32Array(7, 8, 9, 6), PackedInt32Array(4, 6, 9, 10), PackedInt32Array(5, 11, 2), PackedInt32Array(5, 4, 10)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(7084, -2038, 6668, 4266, -2612, 4266, -2660, -1878)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6hoe"]
 size = Vector2(120.9, 34.4007)
@@ -77,3 +78,8 @@ position = Vector2(390, 591)
 
 [node name="Uzi" parent="." instance=ExtResource("6_erjig")]
 position = Vector2(943, 442)
+knockback = 10.0
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_og20w")]
+position = Vector2(408, 373)
+player = NodePath("../Player")

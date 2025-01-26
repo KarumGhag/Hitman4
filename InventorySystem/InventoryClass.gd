@@ -26,9 +26,6 @@ func _ready():
 		if inventory[i] != null:
 			currentItem = inventory[i]
 			break
-	
-	for i in range(len(itemShowers)):
-		print(itemShowers[i])
 
 	
 	
@@ -184,6 +181,5 @@ func updateUI() -> void:
 	
 	#shows all items
 
-	print(inventory[next])
 	nextItemUI.texture = inventory[next].inventoryImage
 	previousItemUI.texture = inventory[previous].inventoryImage

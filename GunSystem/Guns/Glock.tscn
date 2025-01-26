@@ -52,8 +52,9 @@ bullet = ExtResource("2_hoeam")
 shootPoint = NodePath("ShootPoint")
 animationPlayer = NodePath("AnimationPlayer")
 shootVectorPoint = NodePath("ShootVectorPoint")
-damage = 100.0
+damage = 25.0
 bulletSpeed = 1500.0
+knockback = 100.0
 bulletTrail = ExtResource("3_rudob")
 itemName = "Pistol"
 pickUpArea = NodePath("PickupArea")
@@ -66,7 +67,7 @@ inventoryImage = ExtResource("3_1h35j")
 shape = SubResource("CircleShape2D_gkvrw")
 
 [node name="ShootPoint" type="Node2D" parent="."]
-position = Vector2(27, -7)
+position = Vector2(37, -7)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -9,6 +9,11 @@ class_name GunClass
 @export var shootVectorPoint : Node2D
 
 @export_group("Stats")
+
+@export var damage : float
+@export var bulletSpeed : float = 1000
+@export var knockback : float
+
 #basic gun stats
 @export var auto : bool
 @export var shotgun : bool
@@ -30,8 +35,6 @@ var fireCoolDownTimer : Timer
 ## How many times the bullet will bounce
 @export var bulletBounces : int = 1
 
-@export var damage : float
-@export var bulletSpeed : float = 1000
 
 @export_subgroup("reload")
 ## max bullets
@@ -116,6 +119,7 @@ func shoot() -> void:
 		bulletInstance.damage = damage
 		bulletInstance.bounces = bulletBounces
 		bulletInstance.speed = bulletSpeed
+		bulletInstance.knockback = knockback
 
 		
 

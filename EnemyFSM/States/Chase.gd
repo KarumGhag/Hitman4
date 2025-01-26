@@ -4,8 +4,6 @@ class_name ChaseState
 
 
 #State managment
-
-var player : Player
 var targetOffset : Vector2
 var offsetRange : int = 70
 
@@ -40,17 +38,7 @@ func newOffset() -> void:
 	targetOffset = Vector2(randi_range(-offsetRange, offsetRange), randi_range(-offsetRange, offsetRange))
 
 
-var speed : float = 300
-var accel : float = 0.08
 
-var steering : Vector2
-var mass : float = 5
-
-var nav : NavigationAgent2D
-var direction : Vector2 = Vector2.ZERO
-
-var velocity : Vector2
-var global_position : Vector2
 
 func state_process(_delta) -> void:
 	global_position = body.global_position
